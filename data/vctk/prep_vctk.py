@@ -146,7 +146,7 @@ def add_data(h5_file, inputfiles, args, save_examples=False):
     print (lr_patches[40].shape)
     print (hr_patches[40][0][:10])
     print (lr_patches[40][0][:10])
-    print ()'two examples saved')
+    print ('two examples saved')
 
   print (hr_patches.shape)
 
