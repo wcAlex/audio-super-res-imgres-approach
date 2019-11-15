@@ -119,13 +119,13 @@ def add_data(h5_file, inputfiles, args, save_examples=False):
       hr_patch = np.array( x[i : i+d] )
       lr_patch = np.array( x_lr[i_lr : i_lr+d_lr] )
 
-      # print 'a', hr_patch
-      # print 'b', lr_patch
+      # print ('a', hr_patch)
+      # print ('b', lr_patch)
 
       assert len(hr_patch) == d
       assert len(lr_patch) == d_lr
 
-      # print hr_patch
+      # print (hr_patch)
 
       hr_patches.append(hr_patch.reshape((d,1)))
       lr_patches.append(lr_patch.reshape((d_lr,1)))
