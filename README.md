@@ -12,7 +12,16 @@ V. Kuleshov, Z. Enam, P. W. Koh, and S. Ermon. Deep Convolutional Time Series Tr
 
 ### Requirements
 
-The model is implemented in Tensorflow and Keras and uses several additional libraries. Specifically, we used:
+
+For linux environment:
+
+```
+sudo apt-get build-dep python-matplotlib
+virtualenv -p /usr/bin/python3 audio-res-img
+source audio-res-img/bin/activate
+```
+
+The model is implemented in Tensorflow and Keras and uses several additional libraries. Specifically, we used python 3.5+ and below packages:
 
 * `tensorflow==0.12.1`
 * `keras==1.2.1`
