@@ -7,9 +7,12 @@ matplotlib.use('Agg')
 
 import argparse
 import numpy as np
+import sys
+sys.path.append('.')
+sys.path.insert(0, "/home/chi.wang/workspace/voice/audio-super-res-imgres-approach/src")
 
-import models
 from models.model import default_opt
+from models.audiounet import AudioUNet
 from models.io import load_h5, upsample_wav
 
 # ----------------------------------------------------------------------------
@@ -49,12 +52,12 @@ def make_parser():
     help='path to training checkpoint')
   eval_parser.add_argument('--out-label', default='',
     help='append label to output samples')
-  eval_parser.add_argument('--wav-file-list', 
+  eval_parser.add_argument('--wav-file-list',
     help='list of audio files for evaluation')
   eval_parser.add_argument('--r', help='upscaling factor', type=int)
-  eval_parser.add_argument('--sr', help='high-res sampling rate', 
+  eval_parser.add_argument('--sr', help='high-res sampling rate',
                                    type=int, default=16000)
-  
+
   return parser
 
 # ----------------------------------------------------------------------------
@@ -90,15 +93,15 @@ def eval(args):
           print ('WARNING: Error reading file:', line.strip())
 
 def get_model(args, n_dim, r, from_ckpt=False, train=True):
-  """Create a model based on arguments"""  
+  """Create a model based on arguments"""
   if train:
     opt_params = { 'alg' : args.alg, 'lr' : args.lr, 'b1' : 0.9, 'b2' : 0.999,
                    'batch_size': args.batch_size, 'layers': args.layers }
-  else: 
+  else:
     opt_params = default_opt
 
   # create model
-  model = models.AudioUNet(from_ckpt=from_ckpt, n_dim=n_dim, r=r, 
+  model = AudioUNet(from_ckpt=from_ckpt, n_dim=n_dim, r=r,
                                opt_params=opt_params, log_prefix=args.logname)
   return model
 
@@ -108,4 +111,6 @@ def main():
   args.func(args)
 
 if __name__ == '__main__':
+  sys.path.append('.')
+  print(sys.path)
   main()
